@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Circle</title>
+    
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #E31E24;  /* Modern blue instead of red */
+            --secondary: #1e293b;
+            --accent: #E31E24;
+            --light: #f8fafc;
+            --dark: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bg-primary { background-color: var(--primary); }
+        .text-primary { color: var(--primary); }
+        .border-primary { border-color: var(--primary); }
+        .bg-secondary { background-color: var(--secondary); }
+        .text-secondary { color: var(--secondary); }
+
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+
+        /* Glassmorphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Floating elements */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Navbar styles */
+        .navbar-blur {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+        
+        /* Section spacing */
+        section {
+            padding: 5rem 0;
+        }
+        
+        /* Improved button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        /* Improved form styles */
+        .form-input {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 py-4 navbar-blur">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+             <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center">
+    <img src="images/gbs-logo (1).png" alt="GBS Logo" class="w-10 h-10 md:w-14 md:h-14 object-contain" />
+</div>
+                <div>
+                    <h1 class="font-poppins font-bold text-lg md:text-xl text-secondary">Circle</h1>
+                    <p class="text-xs text-gray-500">The Circle</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#home" class="text-secondary hover:text-primary transition-colors font-medium">Home</a>
+                <a href="#about" class="text-secondary hover:text-primary transition-colors font-medium">About</a>
+                <a href="#product" class="text-secondary hover:text-primary transition-colors font-medium">Product</a>
+                <a href="#franchise" class="text-secondary hover:text-primary transition-colors font-medium">Franchise</a>
+                <a href="#team" class="text-secondary hover:text-primary transition-colors font-medium">Team</a>
+                <a href="#gallery" class="text-secondary hover:text-primary transition-colors font-medium">Gallery</a>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="https://gbs-connect.com/" target="_blank">
+                    <button class="btn-primary text-white px-6 py-3 rounded-full font-semibold">
+                        Join Circle
+                    </button>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-btn" class="text-secondary text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden bg-white shadow-lg hidden mobile-menu">
+            <div class="container mx-auto px-6 py-6 space-y-4">
+                <a href="#home" class="block text-secondary py-3 border-b border-gray-100">Home</a>
+                <a href="#about" class="block text-secondary py-3 border-b border-gray-100">About</a>
+                <a href="#product" class="block text-secondary py-3 border-b border-gray-100">Product</a>
+                <a href="#franchise" class="block text-secondary py-3 border-b border-gray-100">Franchise</a>
+                <a href="#team" class="block text-secondary py-3 border-b border-gray-100">Team</a>
+                <a href="#gallery" class="block text-secondary py-3 border-b border-gray-100">Gallery</a>
+                <a href="https://gbs-connect.com/" target="_blank">
+                    <button class="w-full btn-primary text-white px-6 py-3 rounded-full font-semibold mt-4">
+                        Join Circle
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 flex items-center bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <h1 class="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+                            <span class="gradient-text">Connect.</span><br>
+                            <span class="text-secondary">Network.</span><br>
+                            <span class="text-primary">Grow.</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
+                            Join the Circle App and unlock powerful business connections that drive real growth and success.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://gbs-connect.com/member-application" target="_blank">
+                            <button class="btn-primary text-white px-6 py-4 rounded-full font-semibold text-lg w-full sm:w-auto">
+                                Start Networking
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </a>
+                        <button class="border-2 border-primary text-primary px-6 py-4 rounded-full font-semibold text-lg hover:bg-primary hover:text-white transition-all duration-300 w-full sm:w-auto">
+                            Watch Demo
+                            <i class="fas fa-play ml-2"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8">
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-primary">100+</div>
+                            <div class="text-sm text-gray-600">Active Members</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-primary">5+</div>
+                            <div class="text-sm text-gray-600">Chapters</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-primary">1000+</div>
+                            <div class="text-sm text-gray-600">Referrals</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="relative mt-10 lg:mt-0">
+                    <div class="relative z-10">
+                        <img src="./images/gbds.avif" alt="Business networking" class="rounded-3xl shadow-xl w-full h-64 md:h-96 object-cover floating">
+                    </div>
+                    <div class="absolute -top-10 -right-10 w-20 h-20 bg-primary/20 rounded-full blur-xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary mb-4">
+                    About <span class="gradient-text">The Circle</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Empowering businesses to connect, collaborate, and grow through strategic networking opportunities.
+                </p>
+            </div>
+            
+            <!-- Content Grid -->
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center mb-12 md:mb-16">
+                <div class="space-y-6">
+                    <h3 class="font-poppins font-bold text-2xl md:text-3xl text-secondary">
+                        Building Connections That Matter
+                    </h3>
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            At Circle, we believe that meaningful business relationships are the cornerstone of success. 
+                            Our platform brings together entrepreneurs, business owners, and professionals from diverse industries to create 
+                            a thriving ecosystem of mutual support and growth.
+                        </p>
+                        <p>
+                            Through our structured networking chapters, members exchange referrals, share knowledge, and build lasting 
+                            partnerships that drive business success. We're not just a networking group – we're a community dedicated 
+                            to helping each member achieve their professional goals.
+                        </p>
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                        <div class="space-y-2">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-users text-primary text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-secondary">Community Driven</h4>
+                            <p class="text-sm text-gray-600">Built by business owners, for business owners</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-chart-line text-primary text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-secondary">Proven Results</h4>
+                            <p class="text-sm text-gray-600">Measurable growth and success stories</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative order-first lg:order-last">
+                    <img src="images/Screenshot_2025-08-10-02-07-23-54_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Business networking" class="rounded-3xl shadow-xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                <div class="glass-dark rounded-3xl p-6 md:p-8 text-center card-hover">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-2">100+</h3>
+                    <p class="text-gray-600 font-medium">Active Members</p>
+                </div>
+                <div class="glass-dark rounded-3xl p-6 md:p-8 text-center card-hover">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-2">5+</h3>
+                    <p class="text-gray-600 font-medium">Chapters</p>
+                </div>
+                <div class="glass-dark rounded-3xl p-6 md:p-8 text-center card-hover">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-share-nodes text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold text-primary mb-2">1000+</h3>
+                    <p class="text-gray-600 font-medium">Referrals Made</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="product" class="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                <!-- App Mockup -->
+                <div class="relative order-last lg:order-first">
+                    <div class="relative mx-auto w-64 md:w-80">
+                        <!-- Phone Frame -->
+                        <div class="bg-black rounded-[3rem] p-3 md:p-4 shadow-2xl">
+                            <div class="bg-white rounded-[2.5rem] overflow-hidden">
+                                <div class="relative">
+                                    <img src="images/apk-1.jpeg" alt="Circle App" class="w-full h-auto">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating UI Elements -->
+                        <div class="absolute -top-6 -right-6 md:-top-10 md:-right-10 bg-white rounded-2xl p-3 md:p-4 shadow-lg floating">
+                            <i class="fas fa-users text-primary text-xl md:text-2xl"></i>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 bg-white rounded-2xl p-3 md:p-4 shadow-lg floating" style="animation-delay: -3s;">
+                            <i class="fas fa-chart-bar text-primary text-xl md:text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary">
+                            Meet the <span class="gradient-text">Circle App</span>
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                            The Circle App is a professional networking platform designed to empower entrepreneurs and business owners. 
+                            It enables seamless connections, collaboration, and growth within a trusted business community.
+                        </p>
+                    </div>
+                    
+                    <!-- Features List -->
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Real-time Networking</h4>
+                                <p class="text-gray-600">Connect instantly with business professionals in your area</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Business Growth Tools</h4>
+                                <p class="text-gray-600">Access resources and tools to accelerate your business growth</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary">Cross-platform Availability</h4>
+                                <p class="text-gray-600">Available on both iOS and Android devices</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                        <a href="https://apps.apple.com/in/app/global-business-social/id6747422810" target="_blank">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                                 alt="Download on App Store" class="h-12 md:h-14 hover:scale-105 transition-transform">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=app.itfuturz.gbs" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                                 alt="Get it on Google Play" class="h-12 md:h-14 hover:scale-105 transition-transform">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Franchise Section -->
+    <section id="franchise" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary mb-4">
+                    <span class="gradient-text">Franchise</span> Opportunities
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Build communities of thriving businesses in your city. Become a Circle Franchise Partner and lead meaningful networking.
+                </p>
+            </div>
+            
+            <!-- Content Grid -->
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
+                <!-- Benefits Card -->
+                <div class="space-y-8">
+                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100">
+                        <h3 class="font-poppins font-bold text-2xl text-secondary mb-6">Why Partner with Circle?</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-primary text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Exclusive Territory</h4>
+                                    <p class="text-gray-600 text-sm">Launch and grow Circle chapters in your allocated region</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-chalkboard-teacher text-primary text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Training & Support</h4>
+                                    <p class="text-gray-600 text-sm">Comprehensive onboarding and leadership toolkit</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-chart-line text-primary text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Recurring Revenue</h4>
+                                    <p class="text-gray-600 text-sm">Scalable business model with growth potential</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                            <a href="mailto:thecircle0510@gmail.com?subject=Circle%20Franchise%20Enquiry">
+                                <button class="btn-primary text-white px-6 py-3 rounded-full font-semibold w-full sm:w-auto">
+                                    Apply Now
+                                </button>
+                            </a>
+                            <a href="tel:9512002951">
+                                <button class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all w-full sm:w-auto">
+                                    Call Us
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Process Steps -->
+                <div class="space-y-8">
+                    <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-6 md:p-8">
+                        <h3 class="font-poppins font-bold text-2xl text-secondary mb-8">How It Works</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 text-sm md:text-base">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Apply</h4>
+                                    <p class="text-gray-600">Share your interest and preferred region with us</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 text-sm md:text-base">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Interview</h4>
+                                    <p class="text-gray-600">Alignment discussion with our leadership team</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 text-sm md:text-base">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Onboard</h4>
+                                    <p class="text-gray-600">Training, territory setup, and launch planning</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 text-sm md:text-base">4</div>
+                                <div>
+                                    <h4 class="font-semibold text-secondary">Launch</h4>
+                                    <p class="text-gray-600">Start chapters and grow your business community</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-3xl overflow-hidden shadow-xl">
+                        <img src="images/gbs2.avif" alt="GBS Community" class="w-full h-48 md:h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary mb-4">
+                    Meet Our <span class="gradient-text">Team</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Passionate professionals dedicated to helping you succeed in your networking journey.
+                </p>
+            </div>
+            
+            <!-- Team Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg card-hover text-center">
+                    <div class="relative mb-6">
+                        <img src="images/pinkeshpatel.jpeg" alt="Pinkesh Patel" 
+                             class="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto object-cover border-4 border-primary/20">
+                        <div class="absolute -bottom-2 -right-2 w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-secondary mb-2">Pinkesh Patel</h3>
+                    <p class="text-primary font-semibold mb-3">Founder Of Circle</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Ensuring smooth operations and helping chapters thrive across different regions and industries.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg card-hover text-center">
+                    <div class="relative mb-6">
+                        <img src="images/Gaurav Jog.jpg" alt="Gaurav Jogi" 
+                             class="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto object-cover border-4 border-primary/20">
+                        <div class="absolute -bottom-2 -right-2 w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-secondary mb-2">Gaurav Jogi</h3>
+                    <p class="text-primary font-semibold mb-3">Business Trainer</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Leading the vision of connecting businesses worldwide through meaningful networking opportunities.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg card-hover text-center">
+                    <div class="relative mb-6">
+                        <img src="images/ArpitShah.jpeg" alt="Arpit Shah" 
+                             class="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto object-cover border-4 border-primary/20">
+                        <div class="absolute -bottom-2 -right-2 w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-users text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-secondary mb-2">Arpit Shah</h3>
+                    <p class="text-primary font-semibold mb-3">Advisor Board Member</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Building strong relationships and fostering collaboration within our growing network community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary mb-4">
+                    Our <span class="gradient-text">Gallery</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Capturing moments of connection, collaboration, and success from our networking events.
+                </p>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-03-23-91_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Networking Event" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-05-34-32_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Business Meeting" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-06-06-60_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Conference" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-01-35-76_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Team Work" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-07-53-00_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Workshop" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-02-45-30_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Presentation" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-41-38-41_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" 
+                         alt="Collaboration" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    <img src="images/Screenshot_2025-08-10-02-07-23-54_a23b203fd3aafc6dcb84e438dda678b6.jpg" 
+                         alt="Success" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary mb-4">
+                    What Our <span class="gradient-text">Members Say</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real stories of success and growth from our community members.
+                </p>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic leading-relaxed">
+                        "Joining Circle was the best decision I made for my business. The referrals and connections I've gained have tripled my revenue in just six months."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="images/Dr Khushbu Joshi.jpeg" alt="Dr Khushbu Joshi" 
+                             class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold text-secondary">Dr Khushbu Joshi</h4>
+                            <p class="text-gray-500 text-sm">Physiotherapist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic leading-relaxed">
+                        "The community support and collaboration opportunities at Circle are unmatched. I've formed lasting partnerships that continue to drive my business forward."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="images/Swati Mali.jpeg" alt="Swati Mali" 
+                             class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold text-secondary">Swati Mali</h4>
+                            <p class="text-gray-500 text-sm">Founder, Mantavya</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic leading-relaxed">
+                        "Circle provided me with the network and resources I needed to expand into new markets. The quality of connections is exceptional."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="images/Jigar.jpeg" alt="Jigar Patel" 
+                             class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold text-secondary">Jigar Patel</h4>
+                            <p class="text-gray-500 text-sm">Founder, Smart Wire</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- Contact Section -->
+    <section class="py-16 md:py-20 bg-gradient-to-br from-primary to-blue-600 text-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl mb-4">Get In Touch</h2>
+                <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+                    Ready to start your networking journey? Contact us today and discover how Circle can transform your business connections.
+                </p>
+            </div>
+            
+            <!-- Contact Grid -->
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Address</h4>
+                                <a href="https://maps.app.goo.gl/iru7gG1VtaBqb4P88" target="_blank" 
+                                   class="opacity-90 hover:opacity-100 transition-opacity text-sm md:text-base leading-relaxed">
+                                    SNS Business Park, 304, Udhana - Magdalla Rd, Surat, Gujarat 395007
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Phone</h4>
+                                <a href="tel:9512002951" class="opacity-90 hover:opacity-100 transition-opacity text-sm md:text-base">
+                                    +91 95120 02951
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Email</h4>
+                                <a href="mailto:thecircle0510@gmail.com" class="opacity-90 hover:opacity-100 transition-opacity text-sm md:text-base">
+                                   thecircle0510@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map -->
+                    <div class="rounded-2xl overflow-hidden shadow-xl">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.9946654292194!2d72.77236227471772!3d21.152665083514214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04d0046bbad41%3A0xdbd331eda2bee26c!2sSNS%20Business%20Park!5e0!3m2!1sen!2sin!4v1754842564776!5m2!1sen!2sin" 
+                                width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl">
+                    <h3 class="font-poppins font-bold text-2xl text-secondary mb-6">Send us a Message</h3>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" required
+                                   class="form-input bg-gray-50 border border-gray-200 rounded-xl p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                            <input type="email" placeholder="Your Email" required
+                                   class="form-input bg-gray-50 border border-gray-200 rounded-xl p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                        </div>
+                        <input type="tel" placeholder="Your Phone" 
+                               class="w-full form-input bg-gray-50 border border-gray-200 rounded-xl p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                        <textarea placeholder="Your Message" rows="4" required
+                                  class="w-full form-input bg-gray-50 border border-gray-200 rounded-xl p-4 text-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-primary/20"></textarea>
+                        <button type="submit" 
+                                class="w-full bg-primary text-white py-4 px-6 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
+                            Send Message
+                            <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-secondary mb-4">
+                    Frequently Asked <span class="gradient-text">Questions</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get answers to common questions about joining and participating in Circle.
+                </p>
+            </div>
+            
+            <!-- FAQ Accordion -->
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <div class="faq-header p-6 cursor-pointer flex justify-between items-center hover:bg-gray-100 transition-colors">
+                        <h3 class="font-semibold text-lg text-secondary">What is Circle ?</h3>
+                        <i class="fas fa-plus text-primary text-xl"></i>
+                    </div>
+                    <div class="faq-content hidden p-6 pt-0 border-t border-gray-200">
+                        <p class="text-gray-600">
+                            Circle is a professional networking organization that connects business owners, entrepreneurs, and professionals to help them grow their businesses through referrals, partnerships, and collaborative opportunities.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <div class="faq-header p-6 cursor-pointer flex justify-between items-center hover:bg-gray-100 transition-colors">
+                        <h3 class="font-semibold text-lg text-secondary">How do I join a chapter?</h3>
+                        <i class="fas fa-plus text-primary text-xl"></i>
+                    </div>
+                    <div class="faq-content hidden p-6 pt-0 border-t border-gray-200">
+                        <p class="text-gray-600">
+                            Joining is easy! Contact us to find a chapter in your area or explore starting a new one. We'll connect you with local business professionals and help you get started.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <div class="faq-header p-6 cursor-pointer flex justify-between items-center hover:bg-gray-100 transition-colors">
+                        <h3 class="font-semibold text-lg text-secondary">What are the membership benefits?</h3>
+                        <i class="fas fa-plus text-primary text-xl"></i>
+                    </div>
+                    <div class="faq-content hidden p-6 pt-0 border-t border-gray-200">
+                        <p class="text-gray-600">
+                            Members enjoy exclusive access to networking events, referral opportunities, business education workshops, mentorship programs, and our online platform.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <div class="faq-header p-6 cursor-pointer flex justify-between items-center hover:bg-gray-100 transition-colors">
+                        <h3 class="font-semibold text-lg text-secondary">How much does membership cost?</h3>
+                        <i class="fas fa-plus text-primary text-xl"></i>
+                    </div>
+                    <div class="faq-content hidden p-6 pt-0 border-t border-gray-200">
+                        <p class="text-gray-600">
+                            Membership fees vary by chapter and location. Contact your local chapter for specific pricing information. Most members see ROI within the first few months.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <div class="faq-header p-6 cursor-pointer flex justify-between items-center hover:bg-gray-100 transition-colors">
+                        <h3 class="font-semibold text-lg text-secondary">Can I start my own chapter?</h3>
+                        <i class="fas fa-plus text-primary text-xl"></i>
+                    </div>
+                    <div class="faq-content hidden p-6 pt-0 border-t border-gray-200">
+                        <p class="text-gray-600">
+                            Absolutely! We're always looking for passionate business leaders to start new chapters. We provide comprehensive training and ongoing support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12 md:py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-md md:text-lg">GBS</span>
+                        </div>
+                        <div>
+                            <h1 class="font-poppins font-bold text-lg md:text-xl">Circle</h1>
+                            <p class="text-sm text-gray-400">Circle</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md text-sm md:text-base">
+                        Empowering businesses to connect, collaborate, and grow through strategic networking opportunities worldwide.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://youtube.com/@globalbusinesssocial?si=jv46-AMRl8GnxUeT" target="_blank" 
+                           class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-youtube text-sm md:text-base"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1HjFxsHeY1/" target="_blank" 
+                           class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-facebook-f text-sm md:text-base"></i>
+                        </a>
+                        <a href="https://www.instagram.com/thecircle.baroda/?utm_source=qr&igsh=MTVpMGwzNHdidHducQ%3D%3D#" target="_blank" 
+                           class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-instagram text-sm md:text-base"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-poppins font-bold text-lg mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">About Us</a></li>
+                        <li><a href="#product" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Product</a></li>
+                        <li><a href="#franchise" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Franchise</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Our Team</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h3 class="font-poppins font-bold text-lg mb-6">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="Privacy Policy.html" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Privacy Policy</a></li>
+                        <li><a href="Terms of Conditions.html" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 The Circle. All rights reserved.</p>
+                <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                    <a href="tel:9512002951" class="text-gray-400 hover:text-white transition-colors text-sm">
+                        <i class="fas fa-phone mr-2"></i>9512002951
+                    </a>
+                    <a href="mailto:thecircle0510@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
+                        <i class="fas fa-envelope mr-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-blue-600 text-white rounded-full shadow-lg opacity-0 transform translate-y-4 transition-all duration-300 hover:shadow-xl hover:scale-110">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                }
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const content = faqItem.querySelector('.faq-content');
+                const icon = this.querySelector('i');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-content').forEach(otherContent => {
+                    if (otherContent !== content) {
+                        otherContent.classList.add('hidden');
+                        otherContent.parentElement.querySelector('i').className = 'fas fa-plus text-primary text-xl';
+                    }
+                });
+                
+                // Toggle current FAQ item
+                content.classList.toggle('hidden');
+                icon.className = content.classList.contains('hidden') 
+                    ? 'fas fa-plus text-primary text-xl' 
+                    : 'fas fa-minus text-primary text-xl';
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.transform = 'translateY(0)';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.transform = 'translateY(1rem)';
+            }
+        });
+        
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
